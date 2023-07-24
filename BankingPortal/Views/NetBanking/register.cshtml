@@ -1,0 +1,82 @@
+﻿@model BankingPortal.Models.UserInfo
+
+@{
+    ViewBag.Title = "register";
+}
+@{
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
+}
+
+<style>
+    .loginhead {
+        font-weight: 400;
+        text-align: center;
+        /*  text-align:right;*/
+    }
+</style>
+<br /><br /><br />
+<h2>SSB BANK OF INDIA</h2>
+
+
+<div class="row">
+
+    <div class="col-md-3 col-md-offset-4">
+
+        <div style="border:5px black ridge; padding:10px;">
+
+            @using (Html.BeginForm("Register", "NetBanking", FormMethod.Post))
+            {@Html.AntiForgeryToken()
+            <h2 class="loginhead"><strong> REGISTRATION</strong></h2>
+            <table height="200">
+                <tr>
+                    <th colspan="2" class="text-center" style="font-size:25px;"></th>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.AccountNumber)</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.UserName)</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Password)</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.OTP)</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.OTP, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OTP, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+
+
+
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Submit" name="Submit" class="btn btn-info" />
+                        <a href="/NetBanking/Reset" class="btn btn-danger">Reset</a>
+                        @Html.Raw(TempData["msg"])
+                    </td>
+                </tr>
+            </table>
+        }
+
+        </div>
+
+    </div>
+
+</div>

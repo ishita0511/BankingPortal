@@ -1,0 +1,15 @@
+﻿body {
+}
+
+.bgimage {
+    /*background-image: url('../images/Banking.jpeg');*/
+    background-repeat: no-repeat, repeat;
+    height: 700px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+}
+
+.box{
+    margin:10px 100px;
+}

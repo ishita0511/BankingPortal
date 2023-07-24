@@ -1,0 +1,63 @@
+﻿@model BankingPortal.Models.UserInfo
+
+@{
+    ViewBag.Title = "register";
+}
+@{
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
+}
+
+<section class="agile-header">
+    <div class="agile-heading">
+        <br /><br /><br />
+        <h1>Register To NetBanking</h1>
+    </div><br><br />
+    <div class="agile-form1">
+        @using (Html.BeginForm("Index", "NetBanking2", FormMethod.Post))
+        {@Html.AntiForgeryToken()
+
+
+
+
+        <div class="agile-col1">
+            @Html.LabelFor(model => model.AccountNumber, new { @class = "Heading" })
+            @Html.DropDownListFor(model => model.AccountNumber, new SelectList(new[] { TempData["account"] }), "Select Account", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div class="agile-col1">
+            @Html.LabelFor(model => model.UserName, new { @class = "Heading" })
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div><br />
+        <div class="agile-col1">
+            @Html.LabelFor(model => model.Password, new { @class = "Heading" })
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", Style = "background:white; color:black" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div><br />
+              <div class="agile-col1">
+                  @Html.LabelFor(model => model.Confirm_Password, new { @class = "Heading" })
+                  @Html.PasswordFor(model => model.Confirm_Password, new { @class = "form-control ", Style = "background:white; color:black" })
+                  @Html.ValidationMessageFor(model => model.Confirm_Password, "", new { @class = "text-danger" })
+              </div><br />
+        <div class="agile-col1">
+            @Html.LabelFor(model => model.OTP, new { @class = "Heading" })
+            @Html.TextBoxFor(model => model.OTP, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.OTP, "", new { @class = "text-danger" })
+        </div><br />
+
+
+
+        <div>
+            <input type="submit" value="Register" name="Submit" class="btn btn-info" />
+        </div>
+
+
+        @Html.Raw(TempData["msg"])
+
+    }
+    </div>
+    <div class="clear"></div>
+
+
+</section>

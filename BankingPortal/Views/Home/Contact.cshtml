@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "CONTACT US";
+}
+<style>
+hr {
+        background-color: black;
+        border-style: dotted;
+    }
+    </style >
+    <br >
+    <br >
+    <h2 class="box" >@ViewBag.Title </h2 >
+    <hr >
+    <hr >
+    <body style="background-color: rgb(207, 199, 199, 0.61)" >
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" / >
+    <address class="box" >
+    SSB Bank of India<br / >
+    Mumbai, India<br / >
+    <abbr title="Phone" > Phone No.</abbr >
+    0141-294856
+    </address >
+
+    <address class="box" >
+    <strong > Support:</strong > <a href="mailto.Support@ssb.com" > Support@ssb.com</a > <br / >
+    <strong > Marketing:</strong > <a href="mailto.Marketing@ssb.com" > Marketing@ssb.com</a >
+
+
+    </address >
+
+
+
+    <h4 class="box" >@ViewBag.TheMessage </h4 >
+    <form method="post" class="box" >
+    <br >
+    <textarea name="message" > </textarea >
+
+    <input type="submit" value="Send" class="btn btn-info" style="margin-bottom : 25px; margin-left : 15px" / >
+    <br><br><br><br><br>
+    </form >
+    </body >

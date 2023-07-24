@@ -1,0 +1,48 @@
+﻿@model BankingPortal.Models.UserInfo
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
+}
+<br /><br /><br />
+<h2>Enter OTP</h2>
+
+
+<div class="row">
+
+    <div class="col-md-3 col-md-offset-4">
+
+        <div style="border:5px black ridge; padding:10px;">
+
+            @using (Html.BeginForm("Index", "NetBanking", FormMethod.Post))
+            {@Html.AntiForgeryToken()
+            <table height="200">
+                <tr>
+                    <th colspan="2" class="text-center" style="font-size:25px;">Create Account</th>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.AccountNumber)</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="GenerateOTP" name="Submit" class="btn btn-info" />
+
+                    </td>
+                </tr>
+            </table>
+        }
+
+        </div>
+
+    </div>
+
+</div>

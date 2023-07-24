@@ -1,0 +1,100 @@
+﻿@model BankingPortal.Models.Registration
+
+
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.Message = "CUSTOMER PROFILE";
+}
+
+<h1 style="text-align:center" >@ViewBag.Message</h1>
+<style>
+    body {
+        background-color: rgb(207, 199, 199, 0.61);
+        
+    }
+
+    hr {
+        background-color: black;
+        border-style: dotted;
+    }
+    td {
+        padding: 7px 15px;
+    }
+</style>
+<body>
+    <center>
+
+        <hr>
+        <hr>
+        <table>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.AccountNumber)</strong></td>
+                <td>@Html.DisplayFor(model => model.AccountNumber)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.Title)</strong></td>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.FirstName)</strong></td>
+                <td>@Html.DisplayFor(model => model.FirstName)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.LastName)</strong></td>
+                <td>@Html.DisplayFor(model => model.LastName)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.FatherName)</strong></td>
+                <td>@Html.DisplayFor(model => model.FatherName)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.DOB)</strong></td>
+                <td>@Html.DisplayFor(model => model.DOB)</td>
+            </tr>
+
+
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.MobileNumber)</strong></td>
+                <td>@Html.DisplayFor(model => model.MobileNumber)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.Email)</strong></td>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.AadharNumber)</strong></td>
+                <td>@Html.DisplayFor(model => model.AadharNumber)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.Address)</strong></td>
+                <td>@Html.DisplayFor(model => model.Address)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.Landmark)</strong></td>
+                <td>@Html.DisplayFor(model => model.Landmark)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.City)</strong></td>
+                <td>@Html.DisplayFor(model => model.City)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.State)</strong></td>
+                <td>@Html.DisplayFor(model => model.State)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(model => model.Pincode)</strong></td>
+                <td>@Html.DisplayFor(model => model.Pincode)</td>
+            </tr>
+
+        </table>
+
+        <hr>
+        <hr>
+        <br>
+        <br>
+
+
+    </center>
+    </body>

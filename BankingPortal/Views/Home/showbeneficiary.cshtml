@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BankingPortal.Models.Beneficiary>
+
+@{
+    ViewBag.Title = "showbeneficiary";
+}
+<style>
+
+    body {
+         background-color: rgb(207, 199, 199, 0.61);
+    
+    }
+    </style>
+<br>
+<h2 style="text-align:center">BENEFICIARY LIST</h2>
+<hr><hr>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeneficiaryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeneficiaryAcc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeneficiaryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeneficiaryAcc)
+        </td>
+        <td>
+            @*@Html.ActionLink("Transfer", "Transfer", new { id = item.Id })*@
+            @Html.ActionLink("Transfer", "ExtractBeneficiary", new { id = item.Id },null)
+            @*<input type="submit" value="Transfer"/>*@
+
+        </td>
+    </tr>
+}
+
+</table>

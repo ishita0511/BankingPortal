@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BankPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="balance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountNumber" Type="bigint" Nullable="false" />
+          <Property Name="AccountBalance" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Beneficiary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="AccountNumber" Type="bigint" Nullable="false" />
+          <Property Name="BeneficiaryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeneficiaryAcc" Type="bigint" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FatherName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AadharNumber" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Landmark" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Pincode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="OccupationType" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IncomeSource" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="GrossIncome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="AccountType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReferenceId" Type="bigint" Nullable="false" />
+          <Property Name="TransferMode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ReceiverAccount" Type="bigint" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="SenderAccount" Type="bigint" Nullable="false" />
+          <Property Name="DateofTransaction" Type="datetime" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TransactionType" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Balance" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="bigint" Nullable="false" />
+          <Property Name="UserName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="OTP" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountNumber" Type="bigint" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_UserRole_UserRole">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="datetime" Mode="In" />
+          <Parameter Name="end" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Fundtransfer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SenderAccountNumber" Type="bigint" Mode="In" />
+          <Parameter Name="ReceiverAccountNumber" Type="bigint" Mode="In" />
+          <Parameter Name="Amount" Type="float" Mode="In" />
+          <Parameter Name="Remark" Type="varchar" Mode="In" />
+          <Parameter Name="TransferMode" Type="varchar" Mode="In" />
+          <Parameter Name="ReferenceId" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="BankPortalModelStoreContainer">
+          <EntitySet Name="balance" EntityType="Self.balance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Beneficiary" EntityType="Self.Beneficiary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionInfo" EntityType="Self.TransactionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserRole_UserRole" Association="Self.FK_UserRole_UserRole">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BankPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="balance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountNumber" Type="Int64" Nullable="false" />
+          <Property Name="AccountBalance" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Beneficiary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="AccountNumber" Type="Int64" Nullable="false" />
+          <Property Name="BeneficiaryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BeneficiaryAcc" Type="Int64" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MobileNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AadharNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Landmark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pincode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OccupationType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IncomeSource" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GrossIncome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceId" Type="Int64" Nullable="false" />
+          <Property Name="TransferMode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReceiverAccount" Type="Int64" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="SenderAccount" Type="Int64" Nullable="false" />
+          <Property Name="DateofTransaction" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TransactionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Balance" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="Int64" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="OTP" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_UserRole" FromRole="UserInfo" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountNumber" Type="Int64" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserRole_UserRole" FromRole="UserRole" ToRole="UserInfo" />
+        </EntityType>
+        <Association Name="FK_UserRole_UserRole">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="balances" EntityType="Self.balance" />
+          <EntitySet Name="Beneficiaries" EntityType="Self.Beneficiary" />
+          <EntitySet Name="Registrations" EntityType="Self.Registration" />
+          <EntitySet Name="TransactionInfoes" EntityType="Self.TransactionInfo" />
+          <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <AssociationSet Name="FK_UserRole_UserRole" Association="Self.FK_UserRole_UserRole">
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <FunctionImport Name="fdate" ReturnType="Collection(BankPortalModel.fdate_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Fundtransfer">
+            <Parameter Name="SenderAccountNumber" Mode="In" Type="Int64" />
+            <Parameter Name="ReceiverAccountNumber" Mode="In" Type="Int64" />
+            <Parameter Name="Amount" Mode="In" Type="Double" />
+            <Parameter Name="Remark" Mode="In" Type="String" />
+            <Parameter Name="TransferMode" Mode="In" Type="String" />
+            <Parameter Name="ReferenceId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Funcdate" EntitySet="TransactionInfoes" ReturnType="Collection(BankPortalModel.TransactionInfo)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Functransfer" EntitySet="balances" ReturnType="Collection(BankPortalModel.balance)">
+            <Parameter Name="SenderAccountNumber" Mode="In" Type="Int64" />
+            <Parameter Name="ReceiverAccountNumber" Mode="In" Type="Int64" />
+            <Parameter Name="Amount" Mode="In" Type="Double" />
+            <Parameter Name="Remark" Mode="In" Type="String" />
+            <Parameter Name="TransferMode" Mode="In" Type="String" />
+            <Parameter Name="ReferenceId" Mode="In" Type="Int64" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="fdate_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="ReferenceId" Nullable="false" />
+          <Property Type="String" Name="TransferMode" Nullable="false" MaxLength="10" />
+          <Property Type="Int64" Name="ReceiverAccount" Nullable="false" />
+          <Property Type="Int32" Name="Amount" Nullable="false" />
+          <Property Type="Int64" Name="SenderAccount" Nullable="false" />
+          <Property Type="DateTime" Name="DateofTransaction" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Remarks" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TransactionType" Nullable="false" MaxLength="10" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BankPortalModelStoreContainer" CdmEntityContainer="BankPortalEntities">
+          <EntitySetMapping Name="balances">
+            <EntityTypeMapping TypeName="BankPortalModel.balance">
+              <MappingFragment StoreEntitySet="balance">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Beneficiaries">
+            <EntityTypeMapping TypeName="BankPortalModel.Beneficiary">
+              <MappingFragment StoreEntitySet="Beneficiary">
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="BeneficiaryName" ColumnName="BeneficiaryName" />
+                <ScalarProperty Name="BeneficiaryAcc" ColumnName="BeneficiaryAcc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="BankPortalModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AadharNumber" ColumnName="AadharNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Landmark" ColumnName="Landmark" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="OccupationType" ColumnName="OccupationType" />
+                <ScalarProperty Name="IncomeSource" ColumnName="IncomeSource" />
+                <ScalarProperty Name="GrossIncome" ColumnName="GrossIncome" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionInfoes">
+            <EntityTypeMapping TypeName="BankPortalModel.TransactionInfo">
+              <MappingFragment StoreEntitySet="TransactionInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
+                <ScalarProperty Name="TransferMode" ColumnName="TransferMode" />
+                <ScalarProperty Name="ReceiverAccount" ColumnName="ReceiverAccount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+                <ScalarProperty Name="DateofTransaction" ColumnName="DateofTransaction" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfoes">
+            <EntityTypeMapping TypeName="BankPortalModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="BankPortalModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fdate" FunctionName="BankPortalModel.Store.fdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BankPortalModel.fdate_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
+                <ScalarProperty Name="TransferMode" ColumnName="TransferMode" />
+                <ScalarProperty Name="ReceiverAccount" ColumnName="ReceiverAccount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="SenderAccount" ColumnName="SenderAccount" />
+                <ScalarProperty Name="DateofTransaction" ColumnName="DateofTransaction" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Fundtransfer" FunctionName="BankPortalModel.Store.Fundtransfer" />
+          <FunctionImportMapping FunctionImportName="Funcdate" FunctionName="BankPortalModel.Store.fdate" />
+          <FunctionImportMapping FunctionImportName="Functransfer" FunctionName="BankPortalModel.Store.Fundtransfer" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

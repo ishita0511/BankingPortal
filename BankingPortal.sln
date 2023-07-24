@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingPortal", "BankingPortal\BankingPortal.csproj", "{1F386990-E970-4619-BD7E-9D7BFDB09EB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingPortalTest", "BankingPortalTest\BankingPortalTest.csproj", "{D8FA012E-7486-4783-927C-CDD1BD1FC1ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F386990-E970-4619-BD7E-9D7BFDB09EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F386990-E970-4619-BD7E-9D7BFDB09EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F386990-E970-4619-BD7E-9D7BFDB09EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F386990-E970-4619-BD7E-9D7BFDB09EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8FA012E-7486-4783-927C-CDD1BD1FC1ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8FA012E-7486-4783-927C-CDD1BD1FC1ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8FA012E-7486-4783-927C-CDD1BD1FC1ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8FA012E-7486-4783-927C-CDD1BD1FC1ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D27C130C-2329-4CEB-A165-62D8D628888F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,48 @@
+﻿@model BankingPortal.Models.UserInfo
+
+@{
+    ViewBag.Title = "Forgot";
+}
+@{
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
+}
+<style>
+    .loginhead {
+        font-weight: 400;
+        text-align: center;
+        /*  text-align:right;*/
+    }
+</style>
+<section class="agile-header">
+    <div class="agile-heading">
+        <br /><br /><br />
+                    <h1>SSB BANK OF INDIA</h1>
+    </div><br><br />
+              <div class="agile-form2">
+                  @using (Html.BeginForm("Forgot", "Login", FormMethod.Post))
+                  {@Html.AntiForgeryToken()
+
+
+                  <h3 class="loginhead"><strong> Forgot UserID</strong></h3>
+
+                  <div class="agile-col1">
+                      @Html.LabelFor(model => model.AccountNumber, new { @class = "Heading" })
+                      @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control" })
+                      @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                  </div>
+                  <br />
+
+
+
+                  <div class="forgotbtn">
+                      <input type="submit" value="Get OTP" name="Submit" class="btn btn-info" />
+                  </div>
+
+
+                  @Html.Raw(TempData["msg"])
+
+              }
+              </div>
+    <div class="clear"></div>
+
+</section>

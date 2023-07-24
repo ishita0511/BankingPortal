@@ -1,0 +1,147 @@
+﻿@model BankingPortal.Models.Registration
+@{
+    ViewBag.Title = "Register";
+}
+@{
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
+}
+<style>
+    .loginhead {
+        font-weight: 400;
+        text-align: center;
+        /*  text-align:right;*/
+    }
+    </style>
+
+        <section class="agile-header">
+            <div class="agile-heading">
+            <br>
+                <h1>SSB BANK OF INDIA</h1>
+            </div>
+            <div class="agile-form">
+                @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                {@Html.AntiForgeryToken()
+                <form>
+                    <h2 class="loginhead"><strong>CREATE ACCOUNT</strong></h2>
+
+                    <div class="agile-title">
+                        @Html.LabelFor(model => model.Title, new { @class = "Heading" })
+                        @Html.DropDownListFor(model => model.Title, new SelectList(new[] { "Mr.", "Miss", "Mrs." }), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-fname">
+                        @Html.LabelFor(model => model.FirstName, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-lname">
+                        @Html.LabelFor(model => model.LastName, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-col1">
+                        @Html.LabelFor(model => model.FatherName, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.FatherName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-col1">
+
+                        @Html.LabelFor(model => model.DOB, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.DOB, new { @class = "form-control", @type = "date" })
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-col1">
+
+                        @Html.LabelFor(model => model.AccountType, new { @class = "Heading" })
+                        @Html.DropDownListFor(model => model.AccountType, new SelectList(new[] { "Savings Account", "Current Account" }),"Select Account Type", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-col1">
+                        @Html.LabelFor(model => model.Email, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-coltwo">
+                        @Html.LabelFor(model => model.MobileNumber, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="agile-coltwo">
+                        @Html.LabelFor(model => model.AadharNumber, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.AadharNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AadharNumber, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="agile-col1">
+                        @Html.LabelFor(model => model.Address, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-col1">
+                        @Html.LabelFor(model => model.Landmark, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.Landmark, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Landmark, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-col3">
+                        @Html.LabelFor(model => model.State, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-col3">
+                        @Html.LabelFor(model => model.City, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="agile-col3">
+                        @Html.LabelFor(model => model.Pincode, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Pincode, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="agile-coltwo">
+                        @Html.LabelFor(model => model.OccupationType, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.OccupationType, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OccupationType, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="agile-coltwo">
+                        @Html.LabelFor(model => model.IncomeSource, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.IncomeSource, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IncomeSource, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="agile-col1">
+                        @Html.LabelFor(model => model.GrossIncome, new { @class = "Heading" })
+                        @Html.TextBoxFor(model => model.GrossIncome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.GrossIncome, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Register" name="Submit" class="btn btn-info" />
+                    </div>
+
+                    @Html.Raw(TempData["msg"])
+                </form>
+            }
+            </div>
+            <div class="clear"></div>
+
+
+        </section>

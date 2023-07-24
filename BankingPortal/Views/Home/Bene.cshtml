@@ -1,0 +1,108 @@
+﻿@model BankingPortal.Models.Beneficiary
+
+@{
+    ViewBag.Title = "Transfer";
+}
+
+<style>
+
+    body {
+        /*//background-image: url('../../Image/Lock.png');
+*/  background-color: rgb(207, 199, 199, 0.61); 
+        padding:;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+    }
+
+    .container {
+        border-radius: 5px;
+        background: rgb(15, 83, 131, 0.70);
+        padding: 20px;
+        width: 65%;
+        font-weight: bold;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: white;
+    }
+
+    .closer {
+        margin: auto;
+        width: 80%;
+        justify-content: center;
+    }
+
+    h4 {
+        font-weight: bold;
+        color: black;
+    }
+</style>
+<div>
+    <div><br><br>
+        <h2 align="center">ADD BENEFICIARY INFORMATION</h2>
+        <hr />
+        <div class="closer">
+
+            @using (Html.BeginForm("Bene","Home",FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Beneficiary</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 ">
+                        @Html.DropDownListFor(model => model.AccountNumber, new SelectList(new[] { Session["AccountNumber"] }), "Select Account", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BeneficiaryName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BeneficiaryName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BeneficiaryName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BeneficiaryAcc, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BeneficiaryAcc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BeneficiaryAcc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                        <a href="/Home/showbeneficiary" class="btn btn-default">Show Beneficiaries</a>
+                        @Html.Raw(TempData["Mesage"])
+                    </div>
+                </div>
+               
+            </div>
+                <br><br><br><br><br><br>
+               
+            }
+
+
+            @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+            @*Html.Raw(TempData["Msg"])
+        Section Scripts {
+            Scripts.Render("~/bundles/jqueryval")
+        }*@
+
+        </div>
+
+    </div>
+</div>
+

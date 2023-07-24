@@ -1,0 +1,59 @@
+﻿@model BankingPortal.Models.Registration
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
+}
+<style>
+    .loginhead {
+        font-weight: 400;
+        text-align: center;
+        /*  text-align:right;*/
+    }
+</style>
+<section class="agile-header">
+    <div class="agile-heading">
+        <br /><br /><br />
+        <h1>SSB BANK OF INDIA</h1>
+    </div><br><br />
+    <div class="agile-form1">
+        @using (Html.BeginForm("Index", "NetBanking", FormMethod.Post))
+        {@Html.AntiForgeryToken()
+
+        <h2 class="loginhead"><strong> REGISTRATION</strong></h2>
+
+
+        <div class="agile-col1">
+            @Html.LabelFor(model => model.AccountNumber, new { @class = "Heading" })
+            @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div class="agile-col1">
+            @Html.LabelFor(model => model.MobileNumber, new { @class = "Heading" })
+            @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+        </div><br />
+        <div class="agile-col1">
+            @Html.LabelFor(model => model.Email, new { @class = "Heading" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div><br />
+
+
+
+        <div>
+            <input type="submit" value="Register" name="Submit" class="btn btn-info" />
+        </div>
+
+
+        @Html.Raw(TempData["msg"])
+
+    }
+    </div>
+    <div class="clear"></div>
+
+
+</section>

@@ -1,0 +1,68 @@
+﻿@model BankingPortal.Models.UserInfo
+
+@{
+    ViewBag.Title = "Index";
+}
+@{ 
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
+}
+<style>
+    .loginhead {
+       font-weight:400;
+    text-align:center;
+        
+      /*  text-align:right;*/
+    }
+    </style>
+
+<section class="agile-header">
+    <div class="agile-heading">
+        <br /><br />
+    <h1>SSB BANK OF INDIA</h1>
+       
+    </div>
+
+    <div class="agile-form1">
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+        {@Html.AntiForgeryToken()
+
+
+
+        <h2 class="loginhead"><strong> LOGIN</strong></h2>
+      
+        <div class="agile-col1">
+
+            @Html.LabelFor(model => model.UserName, new { @class = "Heading" })
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="link"><a href="/Login/Forgot">Forgot userID?</a></div>
+        <br />
+        <div class="agile-col1">
+            @Html.LabelFor(model => model.Password, new { @class = "Heading" })
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control ", Style = "background:white; color:black" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="link">
+            <a href="/Login/Forgotpassword">Forgot Password?</a>
+        </div>
+
+
+        <div class=" loginbtn">
+            <input type="submit" value="Login" name="Submit" class="btn btn-info" />
+        </div><br /><br /><br /><br /><br />
+        @Html.Raw(TempData["msg"])
+        <hr />
+        <a href="/NetBanking/Index">Register to Internet Banking</a><br />
+        <a href="/Register/Index">Open a Bank Account</a>
+
+
+
+
+    }
+    </div>
+    <div class="clear"></div>
+
+
+</section>

@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Online Bank</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Lato", sans-serif
+        }
+
+        .w3-bar, h1, button {
+            font-family: "Montserrat", sans-serif
+        }
+ 
+        .navbar-inverse {
+            background-color: lightgray;
+            border-color: #080808;
+        }
+        li:active {
+            background-color: black;
+            color: white;
+        }
+        .effect-2 {
+            padding: 10px;
+            &:before, &:after
+        }
+        .current ul li:hover {
+            background-color: lightgray;
+            color: red;
+            border-radius: 4px;
+
+        }
+       .active{
+            background-color:red;
+        }
+
+
+
+    </style>
+</head>
+
+
+
+<body>
+
+
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid navbar-inner current">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home/Index">
+                    <strong>SSB BANK&nbsp;&nbsp;&nbsp;</strong>
+                </a>
+
+            </div>
+            <ul class="nav navbar-nav">
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="inactive">@Html.ActionLink("Home", "Index", "Home")</li>
+                    if (User.IsInRole("Customer"))
+                    {
+
+                        <li class="inactive">@Html.ActionLink("Balance", "Details", "Balance") </li>
+                        <li>@Html.ActionLink("Account Statement", "Statement", "Home")</li>
+                        <li>@Html.ActionLink("Funds Transfer", "Transfer", "Home")</li>
+                        <li>@Html.ActionLink("Profile", "Profiles", "Home")</li>
+                    }
+                    if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Customers", "Customers", "Home")</li>
+                        <li>@Html.ActionLink("Approval", "Approval", "Home")</li>
+                    }
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                }
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="/Home/Logoff"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Second Grid -->
+    <div class="">
+        <div class="">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+        <h1 class="w3-margin w3-xlarge">Quote of the day: In banking or finance, trust is the only thing you have to sell</h1>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity">
+        <div class="w3-xlarge w3-padding-32">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+        <p>SSB BANK LIMITED</p>
+    </footer>
+
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $('.navbar-nav li').ready(function ()
+        {
+           
+            $('.navbar-nav li').removeClass('inactive');
+            $('.navbar-nav li').addClass('active');
+        });
+    </script>
+
+</body>
+
+</html>

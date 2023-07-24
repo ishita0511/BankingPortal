@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    body {
+        
+     background-image: url(../../images/Banking.jpeg);
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+    }
+    </style>
+<div class="row">
+    <div class="col-md-5 margin-top-20"></div>
+    <div class="col-md-5 margin-top-20"></div>
+
+</div>
+
+<body>
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <header class="w3-container w3-center" style="padding: 200px 50px; background-image: url(../../images/Banking.jpeg); background-repeat: no-repeat, repeat; background-size: cover; background-position: center; height: 510px;">
+        <h1 class="w3-margin w3-jumbo">WELCOME TO SSB ONLINE BANK</h1>
+        <p class="w3-xlarge">A Smart and Digital Way of Banking</p>
+        <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top" onclick="location.href='@Url.Action("AboutUs", "Home")'">About Us</button>
+    </header>
+    <br><br><br><br><br><br>
+</body>

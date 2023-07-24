@@ -1,0 +1,41 @@
+﻿@model BankingPortal.Models.balance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    body {
+        
+        background-color: rgb(207, 199, 199, 0.61);
+        
+    }
+    </style>
+<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+
+<div class="box">
+    <br><br>
+    <h2>Balance</h2>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountBalance)
+        </dd>
+
+    </dl>
+</div>
+<br><br><br><br><br>
